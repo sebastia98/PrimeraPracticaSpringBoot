@@ -10,7 +10,6 @@ public class ServeiAlumnat {
 
 	@Autowired
 	private RepositoriAlumnes repositori;
-	private int alumnesMatriculats = 0;
 	
 	/**
 	 * ha de donar d'alta a la base de dades d'alumnes l'alumne indicat amb 
@@ -29,14 +28,14 @@ public class ServeiAlumnat {
 		if (alumne == null) {
 			return false;
 		} else {
-			alumnesMatriculats += 1;
 			repositori.altaAlumne(id, alumne);
 			return true;
 		}
 	}
 	
-	public int getMatriculats() {
-		return alumnesMatriculats;
+	public int sizeAlumnes() {
+		return repositori.llistaAlumnes().size();
 	}
+
 	
 }
