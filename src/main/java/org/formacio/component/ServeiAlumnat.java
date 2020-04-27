@@ -10,6 +10,7 @@ public class ServeiAlumnat {
 
 	@Autowired
 	private RepositoriAlumnes repositori;
+	private int alumnesMatriculats = 0;
 	
 	/**
 	 * ha de donar d'alta a la base de dades d'alumnes l'alumne indicat amb 
@@ -20,17 +21,22 @@ public class ServeiAlumnat {
 	
 	@PostConstruct
 	public void init() {
-		repositori.altaAlumne(1, "Antonia");
-		repositori.altaAlumne(2, "Joan");
+		matricula(1, "Antonia");
+		matricula(2, "Joan");
 	}
 	
 	public boolean matricula (int id, String alumne) {
 		if (alumne == null) {
 			return false;
 		} else {
+			alumnesMatriculats += 1;
 			repositori.altaAlumne(id, alumne);
 			return true;
 		}
+	}
+	
+	public int getMatriculats() {
+		return alumnesMatriculats;
 	}
 	
 }
